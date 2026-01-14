@@ -1,0 +1,35 @@
+<header class="header <%= is_home() ? 'full-screen' : '' %>" style="background-image: url('<%- url_for(theme.home_bg) %>');">
+  <div class="overlay"></div>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="<%- url_for('/') %>"><%= theme.logo.text || config.title %></a>
+    </div>
+    <ul class="menu">
+      <% for (var i in theme.menu){ %>
+        <li class="menu-item">
+          <a href="<%- url_for(theme.menu[i]) %>" class="menu-link"><%= i %></a>
+        </li>
+      <% } %>
+    </ul>
+  </nav>
+  <div class="hero mobile-hide">
+    <div class="hero-content">
+      <% if (is_post()) { %>
+        <h1 class="hero-title"><%= page.title %></h1>
+        <div class="hero-meta">
+          <span><%= date(page.date, 'YYYY-MM-DD') %></span>
+        </div>
+      <% } else { %>
+        <h1 class="hero-title"><%= config.title %></h1>
+        <p class="hero-subtitle"><%= config.subtitle %></p>
+      <% } %>
+    </div>
+  </div>
+  <% if (is_home()) { %>
+    <div class="scroll-down" id="scrollDownBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  <% } %>
+</header>

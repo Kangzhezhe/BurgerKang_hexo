@@ -1,0 +1,30 @@
+<aside class="sidebar">
+  <div class="profile-card">
+    <div class="profile-cover" style="background-image: url('<%- url_for(theme.profile_bg || "images/profile-bg.png") %>')"></div>
+    <div class="profile-content">
+      <div class="avatar">
+        <img src="<%- url_for(theme.avatar) %>" alt="<%= config.author %>">
+      </div>
+      <div class="profile-info">
+        <h3 class="author-name"><%= config.author %></h3>
+        <p class="author-description"><%= config.description || 'Welcome to my blog!' %></p>
+        
+        <div class="social-links">
+          <!-- Add your social links in theme config if needed -->
+          <% if (theme.social) { %>
+            <% for (var i in theme.social){ %>
+              <a href="<%= theme.social[i] %>" class="social-link" target="_blank"><%= i %></a>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <%- list_tags({show_count: true, class: 'tag', style: 'list', separator: ''}) %>
+  </div>
+</aside>

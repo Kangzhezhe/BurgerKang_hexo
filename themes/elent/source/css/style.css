@@ -1,0 +1,1435 @@
+:root {
+  --primary-color: #ff9800; /* Warm accent */
+  --text-color: #333;
+  --bg-color: #f7f9fc;
+  --card-bg: #ffffff;
+  --header-height: 60px;
+  --footer-bg: #2c3e50;
+  --footer-text: #ecf0f1;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Georgia', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  /* Overlay with 50% opacity white to make background less intrusive */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../images/bg-cover.jpeg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Header */
+.header {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.logo a {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: var(--font-heading);
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-link {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.hero {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-family: var(--font-heading);
+  margin-bottom: 20px;
+  padding: 0 40px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Container */
+.container {
+  max-width: 1200px; /* Wider for sidebar */
+  margin: -60px auto 40px; /* Overlap header */
+  padding: 0 20px;
+  position: relative;
+  z-index: 20;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 40px;
+}
+
+.post-list {
+  flex: 2; /* Takes up 2/3 of space */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sidebar-wrapper {
+  flex: 1; /* Takes up 1/3 of space */
+  min-width: 300px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: sticky;
+  top: 20px;
+}
+
+.profile-card, .widget {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.profile-card .avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+.author-name {
+  font-size: 22px;
+  font-family: var(--font-heading);
+  margin-bottom: 10px;
+}
+
+.author-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-link {
+  font-size: 14px;
+  color: #888;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.social-link:hover {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.widget-title {
+  font-size: 18px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.widget ul {
+  text-align: left;
+}
+
+.widget li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 5px;
+}
+
+.widget li:last-child {
+  border-bottom: none;
+}
+
+/* Tag Cloud / Capsules Style (Refined: Text + Superscript Count) */
+.widget .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px; /* 更加紧凑的间距 */
+  padding: 0 5px;
+  justify-content: center; /* 保持居中或改为 flex-start 左对齐 */
+}
+
+.widget .tag-list-item {
+  display: inline-flex;
+  align-items: baseline; /* 基线对齐，确保文字对齐 */
+  margin: 0;
+  padding: 4px 8px; /* 给hover背景留出呼吸空间 */
+  border-radius: 6px; /* 圆角矩形 */
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+/* Hover 效果：模仿截图中的蓝色高亮块 */
+.widget .tag-list-item:hover {
+  background: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.widget .tag-list-link {
+  display: inline-block;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #555; /* 默认文字深灰 */
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+/* 恢复 # 号前缀 */
+.widget .tag-list-link::before {
+  content: "#"; /* 紧凑不用空格，或者 "# " */
+  color: #ccc;  /* 让井号淡淡的，不抢视觉 */
+  margin-right: 2px;
+  font-weight: normal;
+}
+
+.widget .tag-list-count {
+  display: inline-block;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #999; /* 默认数字浅灰 */
+  font-size: 10px; /* 极小字号 */
+  margin-left: 2px;
+  position: relative;
+  top: -5px; /* 上移实现上标效果 */
+  transition: color 0.2s;
+}
+
+/* Hover 时的文字和数字颜色变化 */
+.widget .tag-list-item:hover .tag-list-link {
+  color: #fff;
+  background: none;
+  border: none;
+}
+
+.widget .tag-list-item:hover .tag-list-count {
+  color: rgba(255, 255, 255, 0.8);
+  background: none;
+  border: none;
+}
+
+
+/* Cards (Updated for List view or Stacked Grid) */
+.post-card {
+  background: rgba(255, 255, 255, 0.75); /* Semi-transparent for right side */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post-card-link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    .post-card {
+        height: 250px;
+    }
+    .post-card-link {
+        flex-direction: row;
+    }
+    .post-cover {
+        flex: 1;
+        height: 100%;
+    }
+    .post-info {
+        flex: 1.5;
+        padding: 30px;
+    }
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.post-cover {
+  display: block;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 768px) {
+    .post-cover {
+        height: 100%; /* Reset height for flex row */
+    }
+}
+
+.post-info {
+  padding: 25px;
+}
+
+.post-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-title a:hover {
+  color: var(--primary-color);
+}
+
+
+.post-meta {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.post-tags {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.post-tag {
+  background: rgba(0,0,0,0.05);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.post-tag:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.post-excerpt {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Post Detail, Archive, etc. needs to handle sidebar? 
+   Currently simple pages might not need sidebar, 
+   or we can add it to layout.ejs if requested. 
+   For now, keeping them simple full width or contained.
+*/
+
+.post-container, .archive-container {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    max-width: 900px; /* Center content */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cards */
+/* ... removed grid specific to old layout ... */
+
+/* Post Detail Content Styling */
+.post-content {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #333;
+  overflow-wrap: break-word;
+}
+
+.post-content h2 {
+  font-size: 1.8em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.post-content h3 {
+  font-size: 1.5em;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.post-content h4 {
+  font-size: 1.25em;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.post-content p {
+  margin-bottom: 20px;
+}
+
+.post-content a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--primary-color);
+}
+
+.post-content ul, .post-content ol {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.post-content li {
+  margin-bottom: 8px;
+}
+
+.post-content blockquote {
+  background: #f8f9fa;
+  border-left: 5px solid var(--primary-color);
+  padding: 15px 20px;
+  margin: 20px 0;
+  color: #555;
+  border-radius: 4px;
+}
+
+.post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.post-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Inline code */
+.post-content code {
+  background: #f0f2f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  color: #c7254e;
+}
+
+/* Code blocks (Hexo usually wraps in figure.highlight or pre code) */
+.post-content pre {
+  background: #2d2d2d;
+  color: #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.post-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+/* Hexo Highlight (Figure) Fix - Overriding Generic Table Styles */
+.post-content .highlight {
+  background: #282c34;
+  border-radius: 8px;
+  margin: 20px 0;
+  overflow-x: auto;
+  color: #abb2bf;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.post-content .highlight table {
+  margin: 0;
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+}
+
+.post-content .highlight td, 
+.post-content .highlight th {
+  border: none;
+  padding: 0;
+}
+
+.post-content .highlight .gutter {
+  width: 1%;
+  color: #636d83;
+  background: #2c313a;
+  padding: 10px 10px;
+  text-align: right;
+  border-right: 1px solid #3e4451;
+  user-select: none;
+  vertical-align: top;
+}
+
+.post-content .highlight .code {
+  padding: 10px 15px;
+  vertical-align: top;
+  width: 99%;
+}
+
+.post-content .highlight pre {
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  border: none;
+  border-radius: 0;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.post-content .highlight tr:nth-child(even) {
+  background-color: transparent;
+}
+
+/* Tables (Generic) */
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.post-content th, .post-content td {
+  padding: 12px 15px;
+  border: 1px solid #e1e4e8;
+  text-align: left;
+}
+
+.post-content th {
+  background-color: #f6f8fa;
+  font-weight: 600;
+}
+
+.post-content tr:nth-child(even) {
+  background-color: #fbfbfc;
+}
+
+.post-content hr {
+  height: 1px;
+  border: none;
+  background-color: #e1e4e8;
+  margin: 40px 0;
+}
+
+/* Archive Header Card (Tag/Category/Archive) */
+.archive-header-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 15px 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.archive-header-icon {
+  font-size: 20px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 152, 0, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.archive-header-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 5px 0;
+}
+
+.archive-header-desc {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Pagination & Navigation */
+.pagination, .post-navigation {
+  margin-top: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.page-number, .extend {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.page-number.current {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.post-navigation {
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.nav-prev, .nav-next {
+  font-weight: bold;
+}
+
+/* Footer */
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 60px;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  .post-list, .sidebar-wrapper {
+    flex: auto;
+  }
+  .hero-title {
+    font-size: 32px;
+  }
+  .container {
+    margin-top: 20px;
+  }
+}
+
+/* Post Table of Contents (TOC) */
+.post-widget-toc {
+  position: fixed;
+  right: 20px;
+  top: 100px; /* Default top */
+  width: 260px;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.4);
+  /* Use specific transitions to avoid dragging lag */
+  transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s, border-radius 0.3s, backdrop-filter 0.3s;
+  max-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+}
+
+.post-widget-toc.collapsed {
+  width: auto;
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  backdrop-filter: none;
+  /* Just show the button */
+}
+
+.post-widget-toc.collapsed .toc-content {
+  display: none; /* simple hide */
+}
+
+/* When collapsed, we might want the header to look like a floating button */
+.post-widget-toc.collapsed .toc-header {
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50px;
+  padding: 6px 14px; /* Smaller padding for button */
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.post-widget-toc.collapsed .toc-title {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 13px; /* Smaller text on button */
+}
+
+.post-widget-toc.collapsed .toc-toggle span {
+   content: "+"; /* Can't change content of span easily via CSS content property on element, need JS or just rotate */
+   transform: rotate(45deg); /* Optional: visual clue */
+}
+
+.toc-header {
+  padding: 10px 15px; /* Compact header */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  cursor: move; /* Indicate draggable */
+  user-select: none; /* Prevent text selection while dragging */
+}
+
+.toc-title {
+  font-weight: bold;
+  font-family: var(--font-heading);
+  font-size: 14px; /* Smaller title */
+}
+
+.toc-toggle {
+  background: none;
+  border: none;
+  font-size: 14px; /* Smaller icon */
+  cursor: pointer;
+  color: inherit;
+  width: 20px; /* Smaller touch target */
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.toc-content {
+  padding: 15px 20px;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 14px;
+}
+
+.toc-content ol, .toc-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc-content ol ol, .toc-content ul ul {
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+.toc-link {
+  color: #666;
+  text-decoration: none;
+  display: block;
+  padding: 4px 0;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
+  margin-left: -12px;
+}
+
+.toc-link:hover, .toc-link.active {
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
+  background: linear-gradient(90deg, rgba(255,152,0,0.05), transparent);
+}
+
+/* Hide TOC on really small screens, or make it a bottom floating button */
+@media (max-width: 1250px) {
+  .post-widget-toc {
+    right: 10px;
+    width: 220px;
+    opacity: 0.95;
+    /* On medium screens, maybe default to collapsed? */
+  }
+}
+
+@media (max-width: 768px) {
+  .post-widget-toc {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    max-height: 50vh;
+    transform-origin: bottom right;
+  }
+}
+
+/* Page Transitions & Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Apply Animations */
+.hero-title, .hero-subtitle, .post-list .post-card, .post-container, .archive-header-card, .widget {
+  animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.hero-title { animation-delay: 0.1s; }
+.hero-subtitle { animation-delay: 0.2s; }
+
+/* Stagger Post Cards */
+.post-list .post-card:nth-child(1) { animation-delay: 0.1s; }
+.post-list .post-card:nth-child(2) { animation-delay: 0.2s; }
+.post-list .post-card:nth-child(3) { animation-delay: 0.3s; }
+.post-list .post-card:nth-child(4) { animation-delay: 0.4s; }
+.post-list .post-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* View Transitions Customization (Optional) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+}
+
+
+
+/* --- Homepage Redesign (Category Bar + Grid) --- */
+
+/* Main Column Wrapper */
+.main-column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Category Navigation Bar */
+.category-nav {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.category-scroll-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 15px;
+  flex: 1;
+  height: 32px; /* Fixed height for single row (approx) */
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.category-scroll-container.expanded {
+  height: auto; /* Let it grow */
+  max-height: 500px;
+}
+
+.category-chip {
+    font-size: 15px;
+    font-weight: 600;
+    color: #555;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.category-chip:hover, .category-chip.active {
+    color: var(--primary-color);
+    background: rgba(255, 152, 0, 0.08);
+}
+
+.category-more-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    margin-left: 10px;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.category-more-btn:hover {
+    color: var(--primary-color);
+}
+
+.category-more-btn i {
+    transition: transform 0.3s;
+}
+
+.category-more-btn.expanded i {
+    transform: rotate(90deg);
+}
+
+/* Post Grid Layout */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* Override existing post-card styles for grid */
+.main-column .post-card {
+    height: 100%;
+    margin-bottom: 0; /* Reset margin from list view */
+    display: flex;
+    flex-direction: column;
+}
+
+.main-column .post-card-link {
+    flex-direction: column !important; /* Force stack */
+    height: 100%;
+}
+
+.main-column .post-cover {
+    height: 200px !important;
+    width: 100% !important;
+    flex: none; /* Don't grow */
+}
+
+.main-column .post-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-column .post-title {
+    font-size: 20px; /* Smaller title for cards */
+    margin-bottom: 10px;
+}
+
+.main-column .post-excerpt {
+    font-size: 14px;
+    margin-bottom: 15px;
+    flex: 1; /* Push meta to bottom */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.main-column .post-meta {
+    margin-top: auto;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+    font-size: 12px;
+}
+
+
+/* Category Modal */
+.category-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s;
+}
+
+.category-modal-content {
+  background-color: var(--card-bg);
+  margin: 0px auto;
+  padding: 25px 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+  position: relative;
+  animation: slideDown 0.3s;
+}
+
+.category-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.category-modal-header h2 {
+  font-size: 24px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.close-modal {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-modal:hover {
+  color: var(--primary-color);
+}
+
+.modal-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.modal-category-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 25px;
+  background: var(--bg-color);
+  border-radius: 30px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.modal-category-item:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 152, 0, 0.2);
+}
+
+.modal-category-item .count {
+  background: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  font-size: 12px;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  padding: 0 6px;
+}
+
+.modal-category-item:hover .count {
+  background: rgba(255,255,255,0.3);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes slideDown {
+  from {transform: translateY(-20px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
+
+/* Full Screen Header for Home */
+.header.full-screen {
+  min-height: 100vh;
+  justify-content: center; /* Center content vertically */
+}
+
+/* Adjust navbar position for full screen header */
+.header.full-screen .navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.header.full-screen .hero {
+  margin-bottom: 0;
+  /* Shift up slightly to look centered visually */
+  transform: translateY(-20px);
+}
+
+/* Scroll Down Indicator (Animated Arrows) */
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 10;
+  padding: 20px;
+}
+
+.scroll-down span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(45deg);
+  margin: -10px;
+  animation: scrollDownAnim 2s infinite;
+}
+
+.scroll-down span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.scroll-down span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes scrollDownAnim {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
+}
+
+
+/* Fix: Remove overlap on Home to ensure content is below the fold */
+.home-container {
+  margin-top: 0;
+  border-radius: 0; /* Optional: reset radius top if it looks detached? No, keep card style */
+}
+
+/* Ensure no negative margin pulls it up on any screen size for home */
+@media (min-width: 1200px) {
+  .home-container {
+    margin-top: 20px; /* Add slight gap on large screens */
+  }
+}
+
+
+/* --- Timeline Archive Styles --- */
+
+.timeline-header {
+  margin-bottom: 40px;
+  position: relative;
+  text-align: center;
+}
+
+.timeline-total-count {
+  background: var(--primary-color);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(255,152,0,0.3);
+}
+
+.archive-timeline {
+  position: relative;
+  /* border-left: 2px solid #e1e4e8;  We use pseudo element for line to control z-index better or just use this */
+  padding-left: 30px;
+  padding-bottom: 40px;
+  margin-top: 30px;
+}
+
+/* The vertical line */
+.archive-timeline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 0;
+    width: 2px;
+    background: #eef2f5;
+    border-radius: 2px;
+}
+
+.timeline-year {
+  margin: 40px 0 20px; 
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.year-num {
+  font-size: 26px;
+  font-weight: bold;
+  font-family: var(--font-heading);
+  color: #cbd5e0; /* Muted color for year */
+}
+
+/* Year Dot */
+.timeline-year::before {
+    content: "";
+    position: absolute;
+    left: -35px; /* Adjust based on padding (30) + line width */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border: 3px solid #cbd5e0;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeUp 0.5s forwards;
+}
+
+.timeline-item:nth-child(odd) { animation-delay: 0.1s; }
+.timeline-item:nth-child(even) { animation-delay: 0.2s; }
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  left: -34px; /* match padding-left of container approx */
+  top: 24px;
+  transition: all 0.3s;
+  z-index: 2;
+  box-shadow: 0 0 0 3px #fff; /* separation from line */
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--primary-color);
+  transform: scale(1.2);
+}
+
+.timeline-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.timeline-content::before {
+    /* Triangle arrow */
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 24px;
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+    border-right: 8px solid #fff;
+    filter: drop-shadow(-1px 1px 1px rgba(0,0,0,0.02));
+}
+
+.timeline-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border-color: rgba(255,152,0,0.2);
+}
+
+.timeline-date {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.timeline-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.timeline-thumbnail {
+  width: 90px;
+  height: 65px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-left: 20px;
+  flex-shrink: 0;
+  background: #f0f0f0;
+}
+
+.timeline-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.timeline-item:hover .timeline-thumbnail img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+    .archive-timeline {
+        padding-left: 20px;
+    }
+    .archive-timeline::before {
+        left: 0;
+    }
+    .timeline-dot, .timeline-year::before {
+        left: -25px; 
+    }
+    .timeline-content {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+    .timeline-thumbnail {
+        width: 100%;
+        height: 120px;
+        margin-left: 0;
+        margin-bottom: 12px;
+    }
+    .timeline-content::before {
+        display: none; /* Hide arrow on mobile if it gets messy */
+    }
+}
+
+
+/* --- Profile Card with Cover Image Fix --- */
+.profile-card {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.profile-cover {
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--primary-color);
+}
+
+.profile-content {
+  padding: 0 30px 30px;
+  position: relative;
+}
+
+.profile-card .avatar img {
+  margin-top: -60px; /* Pull avatar up */
+  position: relative;
+  z-index: 2;
+  border: 4px solid var(--card-bg);
+  background: var(--card-bg);
+  margin-bottom: 10px;
+}
+

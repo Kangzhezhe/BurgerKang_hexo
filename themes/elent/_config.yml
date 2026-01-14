@@ -1,0 +1,20 @@
+# Header
+menu:
+  Home: /
+  Archives: /archives
+
+# Customize
+logo:
+  text: Elent
+  icon: images/shortcut-icon.ico
+
+# Content
+excerpt_length: 150
+
+# Images
+default_cover: images/default-cover.jpeg
+avatar: images/avatar.jpg
+home_bg: images/image-bg.png
+
+# Profile Card Background
+profile_bg: images/avatar-bg.jpeg

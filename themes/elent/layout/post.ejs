@@ -1,0 +1,33 @@
+<article class="container post-container">
+  <!-- TOC Widget -->
+  <aside class="post-widget-toc" id="postWidgetToc">
+    <div class="toc-header">
+      <span class="toc-title">目录</span>
+      <button class="toc-toggle" id="tocToggle">▼</button>
+    </div>
+    <div class="toc-content" id="tocContent">
+      <%- toc(page.content, {list_number: false}) %>
+    </div>
+  </aside>
+
+  <div class="post-content">
+    <%- page.content %>
+  </div>
+  
+  <% if (page.tags && page.tags.length){ %>
+    <div class="post-tags" style="margin-top: 30px; justify-content: flex-start;">
+      <% page.tags.forEach(function(tag){ %>
+        <a href="<%- url_for(tag.path) %>" class="post-tag">#<%= tag.name %></a>
+      <% }) %>
+    </div>
+  <% } %>
+  
+  <div class="post-navigation">
+    <% if (page.prev){ %>
+      <a href="<%- url_for(page.prev.path) %>" class="nav-prev">&larr; <%= page.prev.title %></a>
+    <% } %>
+    <% if (page.next){ %>
+      <a href="<%- url_for(page.next.path) %>" class="nav-next"><%= page.next.title %> &rarr;</a>
+    <% } %>
+  </div>
+</article>

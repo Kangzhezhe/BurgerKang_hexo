@@ -1,0 +1,53 @@
+<div class="container home-container">
+  <div class="content-wrapper">
+    <div class="post-list">
+      <div class="archive-header-card">
+        <div class="archive-header-icon">#</div>
+        <h1 class="archive-header-title"><%= page.tag %></h1>
+        <span class="archive-header-desc">
+          <%= page.posts.length %> <%= page.posts.length === 1 ? 'Post' : 'Posts' %>
+        </span>
+      </div>
+      <% page.posts.forEach(function(post){ %>
+        <article class="post-card">
+          <div class="post-card-link">
+            <a href="<%- url_for(post.path) %>" class="post-cover" style="background-image: url('<%- url_for(post.cover || theme.default_cover) %>');"></a>
+            <div class="post-info">
+              <h2 class="post-title"><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
+              <div class="post-meta">
+                <span class="post-date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+                <% if (post.tags && post.tags.length){ %>
+                  <span class="post-tags">
+                    <% post.tags.forEach(function(tag){ %>
+                      <a href="<%- url_for(tag.path) %>" class="post-tag">#<%= tag.name %></a>
+                    <% }) %>
+                  </span>
+                <% } %>
+              </div>
+              <div class="post-excerpt">
+                <% if(post.excerpt) { %>
+                  <%- post.excerpt %>
+                <% } else { %>
+                  <p><%= strip_html(post.content).substring(0, 100) %>...</p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+      
+      <% if (page.total > 1){ %>
+        <nav class="pagination">
+          <%- paginator({
+            prev_text: '&laquo; Prev',
+            next_text: 'Next &raquo;'
+          }) %>
+        </nav>
+      <% } %>
+    </div>
+    
+    <div class="sidebar-wrapper">
+      <%- partial('_partial/sidebar') %>
+    </div>
+  </div>
+</div>

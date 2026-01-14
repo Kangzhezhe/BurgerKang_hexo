@@ -1,0 +1,41 @@
+<!-- Category Navigation Bar -->
+<div class="category-nav">
+  <div class="category-scroll-container">
+    <a href="<%- url_for('/') %>" class="category-chip <%= is_home() ? 'active' : '' %>">首页</a>
+    <% site.categories.forEach(function(category){ %>
+      <a href="<%- url_for(category.path) %>" class="category-chip <%= is_category(category.name) ? 'active' : '' %>"><%= category.name %></a>
+    <% }) %>
+    <% site.tags.forEach(function(tag){ %>
+      <!-- Adding tags too if categories are few, or separate? Screenshot implies mixed or just lots of items -->
+      <!-- Let's stick to categories first, maybe top tags -->
+    <% }) %>
+    <!-- Optional: Add some hardcoded ones if needed or just categories -->
+  </div>
+  <button class="category-more-btn" id="categoryMoreBtn">
+    <span class="btn-text">更多</span>
+    <i class="icon-angle-double-right">»</i>
+  </button>
+</div>
+
+<!-- Category Modal -->
+<div id="categoryModal" class="category-modal">
+  <div class="category-modal-content">
+    <div class="category-modal-header">
+      <h2>全部分类</h2>
+      <span class="close-modal">&times;</span>
+    </div>
+    <div class="category-modal-body">
+      <div class="modal-category-list">
+        <a href="<%- url_for('/') %>" class="modal-category-item">
+          首页
+        </a>
+        <% site.categories.forEach(function(category){ %>
+          <a href="<%- url_for(category.path) %>" class="modal-category-item">
+            <%= category.name %>
+            <span class="count"><%= category.posts.length %></span>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
