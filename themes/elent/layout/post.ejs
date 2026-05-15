@@ -1,5 +1,4 @@
-<article class="container post-container">
-  <!-- TOC Widget -->
+<div class="post-shell">
   <aside class="post-widget-toc" id="postWidgetToc">
     <div class="toc-header">
       <span class="toc-title">目录</span>
@@ -10,6 +9,7 @@
     </div>
   </aside>
 
+  <article class="post-container">
   <div class="post-content">
     <%- page.content %>
   </div>
@@ -30,4 +30,5 @@
       <a href="<%- url_for(page.next.path) %>" class="nav-next"><%= page.next.title %> &rarr;</a>
     <% } %>
   </div>
-</article>
+  </article>
+</div>
