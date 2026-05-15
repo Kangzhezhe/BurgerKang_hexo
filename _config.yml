@@ -113,3 +113,12 @@ deploy:
   repo: https://github.com/Kangzhezhe/burgerkang # 请替换为你的 GitHub 仓库地址
   branch: main # 如果是新仓库通常是 main，旧仓库可能是 master 或 gh-pages
   token: # 可选，如果配置了 SSH 可以留空
+
+mathjax:
+  tags: none
+  single_dollars: true
+  cjk_width: 0.9
+  normal_width: 0.6
+  append_css: true
+  every_page: false
+

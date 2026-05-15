@@ -1,5 +1,6 @@
 {
    "markdown.copyFiles.destination": {
         "**/*.md": "${documentBaseName}/${fileName}"
-    }
+    },
+   "python.defaultInterpreterPath": "${workspaceFolder}\\.venv-paper\\Scripts\\python.exe"
 }

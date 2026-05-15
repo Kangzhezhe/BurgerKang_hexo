@@ -110,7 +110,8 @@ ul {
 
 /* Container */
 .container {
-  max-width: 1200px; /* Wider for sidebar */
+  max-width: 1400px; /* Wider for sidebar */
+  width: 95%; /* Responsive */
   margin: -60px auto 40px; /* Overlap header */
   padding: 0 20px;
   position: relative;
@@ -406,9 +407,18 @@ ul {
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    max-width: 900px; /* Center content */
+    max-width: 1400px; /* Center content */
+    width: 95%;      /* Allow responsiveness */
     margin-left: auto;
     margin-right: auto;
+    position: relative; /* important for sticky children boundary */
+}
+
+@media (min-width: 1251px) {
+    .post-container { padding-right: 320px; } /* Leave space for TOC */
+}
+@media (min-width: 769px) and (max-width: 1250px) {
+    .post-container { padding-right: 250px; }
 }
 
 /* Cards */
@@ -712,9 +722,10 @@ ul {
 
 /* Post Table of Contents (TOC) */
 .post-widget-toc {
-  position: fixed;
-  right: 20px;
-  top: 100px; /* Default top */
+  position: sticky;
+  float: right;
+  margin-right: -280px; /* Pull into post-container's padding-right */
+  top: 100px; /* Default top distance for sticky */
   width: 260px;
   z-index: 999;
   background: rgba(255, 255, 255, 0.85);
@@ -834,7 +845,9 @@ ul {
 /* Hide TOC on really small screens, or make it a bottom floating button */
 @media (max-width: 1250px) {
   .post-widget-toc {
+    position: fixed;
     right: 10px;
+    margin-right: 0;
     width: 220px;
     opacity: 0.95;
     /* On medium screens, maybe default to collapsed? */
@@ -846,6 +859,7 @@ ul {
     top: auto;
     bottom: 20px;
     right: 20px;
+    margin-right: 0;
     max-height: 50vh;
     transform-origin: bottom right;
   }
